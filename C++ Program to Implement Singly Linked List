@@ -1,0 +1,34 @@
+#include<iostream>
+using namespace std;
+struct node{
+    int data;
+    struct node* link;
+};
+void count(struct node *first){
+    if(first==0)
+       cout<<"NO list";
+    struct node* ptr=NULL;
+    ptr=first;
+    while(ptr!=NULL)
+    {
+        cout<<ptr->data<<"->";
+        ptr=ptr->link;
+    }
+    cout<<"NULL";
+
+}
+
+int main()
+{
+    struct node* first=(struct node* )malloc(sizeof(struct node));
+    struct node* mid=(struct node*)malloc(sizeof(struct node));
+    struct node* last=(struct node*)malloc(sizeof(struct node));
+    first->data=10;
+    first->link=mid;
+    mid->data=20;
+    mid->link=last;
+    last->data=30;
+    last->link=NULL;
+    count(first);
+    
+}

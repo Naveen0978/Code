@@ -1,0 +1,82 @@
+#include<iostream>
+using namespace std;
+struct node{
+    int data;
+    struct node *next;
+}*head;
+
+void createlist(int n){
+    int data,i;
+    struct node *temp,*newnode;
+    head=(struct node *)malloc(sizeof(struct node));
+    if(head==NULL)
+      cout<<"list is empty";
+    else
+    {
+        cin>>data;
+        head->data=data;
+        head->next=NULL;
+        temp=head;
+        for(i=2;i<=n;i++)
+        {
+            newnode=(struct node *)malloc(sizeof(struct node));
+            if(newnode==NULL)
+            {
+                cout<<"cannot create list";
+                break;
+            }
+            else
+            {
+                cin>>data;
+                newnode->data=data;
+                newnode->next=NULL;
+                temp->next=newnode;
+                temp=newnode;
+            }
+        }
+    }
+}
+
+
+void sorted(){
+    struct node *ptr,*cpt;
+    int temp;
+    ptr=head;
+    while(ptr!=NULL)
+    {
+        cpt=ptr->next;
+        while(cpt!=NULL)
+        {
+            if(ptr->data>cpt->data)
+            {
+                temp=ptr->data;
+                ptr->data=cpt->data;
+                cpt->data=temp;
+            }
+            cpt=cpt->next;
+        }
+        ptr=ptr->next;
+    }
+}
+
+
+
+void display(){
+    struct node *ptr=head;
+    while(ptr!=NULL)
+    {
+        cout<<ptr->data<<"->";
+        ptr=ptr->next;
+    }
+    cout<<"NULL\n";
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    createlist(n);
+    display();
+    sorted();
+    display();
+}
